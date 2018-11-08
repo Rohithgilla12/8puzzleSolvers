@@ -75,7 +75,7 @@ def moveDown(state):
 def main(state):
     queue.append(state)
     while len(queue)!=0:
-        temp=queue.pop(0)
+        temp=queue.pop()
         visited.append(temp[0])
         if moveDown(temp) is not None:
             if moveDown(temp)[0] not in visited:
@@ -93,8 +93,7 @@ def main(state):
             if queue[i][0] == goalState:
                 global goalFound
                 goalFound=True
-                print("Path is "+'->'.join(queue[i][1]))
-                print("Number of nodes visited"+str(len(visited)))
+                print(queue[i][1])
         if goalFound is True:
             break
 if __name__ == '__main__':
