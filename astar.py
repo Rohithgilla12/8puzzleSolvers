@@ -109,10 +109,7 @@ class Puzzle:
         return distance
     
     def copy(self):
-        board = []
-        for row in self.board:
-            board.append([x for x in row])
-        return Puzzle(board)
+        return Puzzle(deepcopy(self.board))
 
     def _move(self,at,to):
         copy = self.copy()
