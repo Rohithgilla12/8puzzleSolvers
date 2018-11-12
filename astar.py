@@ -1,6 +1,7 @@
 import collections
 import itertools
 from copy import deepcopy
+from texttable import Texttable
 
 class Node:
     def __init__(self, puzzle, parent=None, nextMove=None):
@@ -119,9 +120,10 @@ class Puzzle:
         return copy
     
     def pprint(self):
+        x=Texttable()
         for row in self.board:
-            print(row)
-        print()
+            x.add_row(row)
+        print(x.draw())
     
     def __str__(self):
         return ''.join(map(str, self))
@@ -130,7 +132,7 @@ class Puzzle:
         for row in self.board:
             yield from row
 
-board = [[1,2,3],[7,8,0],[4,5,6]]
+board = [[1,3,0],[4,2,5],[7,8,6]]#[[1,2,3],[7,8,0],[4,5,6]]
 puzzle = Puzzle(board)
 s = Solver(puzzle)
 p = s.solve()

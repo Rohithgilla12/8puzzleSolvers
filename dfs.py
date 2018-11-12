@@ -1,8 +1,9 @@
 from copy import deepcopy
 import sys
+from texttable import Texttable
 
 goalState=[[1,2,3],[4,5,6],[7,8,0]]
-initalState=[[1,2,3],[7,8,0],[4,5,6]]
+initalState=[[1,2,3],[7,8,0],[4,5,6]] #[[1,3,0],[4,2,5],[7,8,6]] 
 queue=[]
 visited=[]
 goalFound=False
@@ -91,9 +92,39 @@ def main(state):
                 queue.append(moveRight(temp))
         for i in range(len(queue)):
             if queue[i][0] == goalState:
+                print(queue[i])
                 global goalFound
                 goalFound=True
-                print(queue[i][1])
+                k=[initalState,[]]
+                for j in queue[i][1]:
+                    t = Texttable()
+                    if j=='L':
+                        k=moveLeft(k)
+                        t.add_rows(k[0])
+                        print("Moving Left")
+                        print(t.draw())
+                        
+                    if j=='R':
+                        k=moveRight(k)
+                        t.add_rows(k[0])
+                        print("Moving Right")
+                        print(t.draw())
+                        
+                    if j=='U':
+                        k=moveUp(k)
+                        t.add_rows(k[0])
+                        print("Moving Up")
+                        print(t.draw())
+                        
+                    if j=='D':
+                        k=moveDown(k)
+                        t.add_rows(k[0])
+                        print("Moving Down")
+                        print(t.draw())
+                        
+                    print("_"*20+"\n")
+                print("Path is "+'->'.join(queue[i][1]))
+                print("Number of nodes visited: "+str(len(visited)))
         if goalFound is True:
             break
 if __name__ == '__main__':
