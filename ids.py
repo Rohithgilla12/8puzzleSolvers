@@ -6,6 +6,7 @@ initalState=[[1,3,0],[4,2,5],[7,8,6]]
 limit=10
 queue=[]
 visited=[]
+totalNodes=0
 goalFound=False
 
 def moveLeft(state):
@@ -100,20 +101,14 @@ def main(state,limit):
 
 i=1
 while i < limit:
+    totalNodes=totalNodes+len(visited)
     queue=[]
     visited=[] 
     if main([initalState,[]],i) is True:
         print("Minimum depth required is: "+str(i))
+        print(totalNodes)
         i=limit+1
     i+=1
-        
 
 
-    
-        
-i=1
-while i<10:
-    queue=[]
-    visited=[]
-    main([initalState,[]],i)
     

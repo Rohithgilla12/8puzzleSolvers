@@ -59,6 +59,7 @@ class Solver:
         visited = set()
         visited.add(queue[0].state)
         while queue:
+            print(len(queue))
             queue = collections.deque(sorted(list(queue),key=lambda node : node.f))
             node = queue.popleft()
             if node.solved:
