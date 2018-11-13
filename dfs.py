@@ -3,7 +3,7 @@ import sys
 from texttable import Texttable
 
 goalState=[[1,2,3],[4,5,6],[7,8,0]]
-initalState=[[1,2,3],[7,8,0],[4,5,6]] #[[1,3,0],[4,2,5],[7,8,6]] 
+initalState=[[4,2,5],[1,3,0],[7,8,6]]
 queue=[]
 visited=[]
 goalFound=False

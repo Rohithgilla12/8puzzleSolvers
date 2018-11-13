@@ -1,9 +1,10 @@
 from copy import deepcopy
 import sys
 from texttable import Texttable
+import time
 
 goalState=[[1,2,3],[4,5,6],[7,8,0]]
-initalState=[[1,3,0],[4,2,5],[7,8,6]]#[[1,2,3],[7,8,0],[4,5,6]]
+initalState=[[1,2,3],[7,8,0],[4,5,6]]#[[1,3,0],[4,2,5],[7,8,6]]#[[1,2,3],[7,8,0],[4,5,6]]
 queue1=[]
 queue2=[]
 visited1=[]
@@ -86,6 +87,7 @@ goalState=[[1,2,3],[4,5,6],[7,8,0]]
 queue1.append([initalState,[]])
 queue2.append([goalState,[]])
 
+start = time.clock()
 while True:
     temp=queue1.pop(0)
     visited1.append(temp[0])
@@ -161,4 +163,5 @@ while True:
             print("_"*20+"\n")
         print("Path is "+'->'.join(path))
         print("Number of nodes visited: "+str(len(visited1)+len(visited2)))
+        print ("time_taken=",time.clock()-start)
         break

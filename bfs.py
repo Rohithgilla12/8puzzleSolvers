@@ -1,9 +1,10 @@
 from copy import deepcopy
 import sys
 from texttable import Texttable
+import time
 
 goalState=[[1,2,3],[4,5,6],[7,8,0]]
-initalState=[[1,3,0],[4,2,5],[7,8,6]]#[[1,2,3],[7,8,0],[4,5,6]]
+initalState=[[1,2,3],[7,8,0],[4,5,6]]
 queue=[]
 visited=[]
 goalFound=False
@@ -128,4 +129,6 @@ def main(state):
         if goalFound is True:
             break
 if __name__ == '__main__':
+    start=time.clock()
     main([initalState,[]])
+    print ("time_taken=",time.clock()-start)

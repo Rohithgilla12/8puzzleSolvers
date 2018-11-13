@@ -2,7 +2,8 @@ import collections
 import itertools
 from copy import deepcopy
 from texttable import Texttable
-
+totalNodes=0
+import time
 class Node:
     def __init__(self, puzzle, parent=None, nextMove=None):
         self.puzzle=puzzle
@@ -59,7 +60,8 @@ class Solver:
         visited = set()
         visited.add(queue[0].state)
         while queue:
-            print(len(queue))
+            global totalNodes
+            totalNodes=len(queue)
             queue = collections.deque(sorted(list(queue),key=lambda node : node.f))
             node = queue.popleft()
             if node.solved:
@@ -133,10 +135,12 @@ class Puzzle:
         for row in self.board:
             yield from row
 
-board = [[1,3,0],[4,2,5],[7,8,6]]#[[1,2,3],[7,8,0],[4,5,6]]
+board = [[1,2,3],[7,8,0],[4,5,6]]#[[4,2,5],[1,3,0],[7,8,6]]
 puzzle = Puzzle(board)
 s = Solver(puzzle)
+start=time.clock()
 p = s.solve()
+
 
 steps = 0
 for node in p:
@@ -145,3 +149,5 @@ for node in p:
     steps += 1
 
 print("Total number of steps: " + str(steps))
+print("Total Number of nodes explored: "+str(totalNodes))
+print ("time_taken=",time.clock()-start)

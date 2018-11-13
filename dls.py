@@ -1,10 +1,11 @@
 from copy import deepcopy
 import sys
 from texttable import Texttable
+import time
 
 goalState=[[1,2,3],[4,5,6],[7,8,0]]
-initalState=[[1,3,0],[4,2,5],[7,8,6]]
-limit=4
+initalState=[[1,2,3],[7,8,0],[4,5,6]]
+limit=25
 queue=[]
 visited=[]
 goalFound=False
@@ -127,26 +128,6 @@ def main(state):
         if goalFound is True:
             break
 if __name__ == '__main__':
-# queue.append([initalState,[]])
-# while True:
-#     temp=queue.pop()
-#     visited.append(temp[0])
-#     if moveDown(temp) is not None:
-#         if moveDown(temp)[0] not in visited and len(moveDown(temp)[1]) <=limit :
-#             queue.append(moveDown(temp))
-#     if moveUp(temp) is not None:
-#         if moveUp(temp)[0] not in visited and len(moveUp(temp)[1]) <=limit :
-#             queue.append(moveUp(temp))
-#     if moveLeft(temp) is not None:
-#         if moveLeft(temp)[0] not in visited and len(moveLeft(temp)[1]) <=limit :
-#             queue.append(moveLeft(temp))
-#     if moveRight(temp) is not None:
-#         if moveRight(temp)[0] not in visited and len(moveRight(temp)[1]) <=limit :
-#             queue.append(moveRight(temp))
-#     for i in range(len(queue)):
-#         if queue[i][0] == goalState:
-#             goalFound=True
-#             print(queue[i][1])
-#     if goalFound is True:
-#         break
+    start=time.clock()
     main([initalState,[]])
+    print ("time_taken=",time.clock()-start)
