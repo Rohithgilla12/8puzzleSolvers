@@ -4,7 +4,7 @@ from texttable import Texttable
 import time
 
 goalState=[[1,2,3],[4,5,6],[7,8,0]]
-initalState=[[4,2,5],[1,3,0],[7,8,6]]
+initalState=[[1,8,3],[4,6,5],[7,2,0]]
 limit=1
 queue=[]
 visited=[]
@@ -95,6 +95,11 @@ def main(state,limit):
                 queue.append(moveRight(temp))
         for i in range(len(queue)):
             if queue[i][0] == goalState:
+                op = open('output.txt','a+')
+                op.write("Goal found with Iterative deepening search approach!\n For the example: \n")
+                tt=Texttable()
+                tt.add_rows(initalState)
+                op.write(tt.draw())
                 print(queue[i])
                 global goalFound
                 goalFound=True
@@ -106,32 +111,43 @@ def main(state,limit):
                         t.add_rows(k[0])
                         print("Moving Left")
                         print(t.draw())
+                        op.write("\nMoving Left \n")
+                        op.write(t.draw())
                         
                     if j=='R':
                         k=moveRight(k)
                         t.add_rows(k[0])
                         print("Moving Right")
                         print(t.draw())
+                        op.write("\nMoving Right \n")
+                        op.write(t.draw())
                         
                     if j=='U':
                         k=moveUp(k)
                         t.add_rows(k[0])
                         print("Moving Up")
                         print(t.draw())
+                        op.write("\nMoving Up \n")
+                        op.write(t.draw())
                         
                     if j=='D':
                         k=moveDown(k)
                         t.add_rows(k[0])
                         print("Moving Down")
                         print(t.draw())
+                        op.write("\nMoving Down \n")
+                        op.write(t.draw())
                         
                     print("_"*20+"\n")
                 print("Path is "+'->'.join(queue[i][1]))
                 print("Number of nodes visited: "+str(len(visited)))
+                op.write("\nPath is "+'->'.join(queue[i][1])+"\n")
+                op.write("Number of nodes visited: "+str(len(visited))+"\n")
+                op.close()
         if goalFound is True:
             return True
 
-start = time.time()
+start = time.clock()
 while True:
     totalNodes=totalNodes+len(visited)
     queue=[]

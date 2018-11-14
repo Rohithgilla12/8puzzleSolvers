@@ -4,7 +4,7 @@ from texttable import Texttable
 import time
 
 goalState=[[1,2,3],[4,5,6],[7,8,0]]
-initalState=[[1,2,3],[7,8,0],[4,5,6]]#[[1,3,0],[4,2,5],[7,8,6]]#[[1,2,3],[7,8,0],[4,5,6]]
+initalState=[[0,1,2],[4,5,3],[7,8,6]]
 queue1=[]
 queue2=[]
 visited1=[]
@@ -82,7 +82,7 @@ def checkDone(point1,point2):
                 return (point1.index(i),point2.index(j))
     return False
 
-initalState=[[1,3,0],[4,2,5],[7,8,6]]
+
 goalState=[[1,2,3],[4,5,6],[7,8,0]]
 queue1.append([initalState,[]])
 queue2.append([goalState,[]])
@@ -120,6 +120,11 @@ while True:
             queue2.append(moveRight(temp))
     
     if checkDone(queue1,queue2) is not False:
+        op = open('output.txt','a+')
+        op.write("Goal found with Bi Directional Search approach!\n For the example: \n")
+        tt=Texttable()
+        tt.add_rows(initalState)
+        op.write(tt.draw())
         i,j=checkDone(queue1,queue2)
         path1=queue1[i][1]
         path2=queue2[j][1]
@@ -141,27 +146,38 @@ while True:
                 t.add_rows(k[0])
                 print("Moving Left")
                 print(t.draw())
+                op.write("\nMoving Left \n")
+                op.write(t.draw())
                 
             if j=='R':
                 k=moveRight(k)
                 t.add_rows(k[0])
                 print("Moving Right")
                 print(t.draw())
+                op.write("\nMoving Right \n")
+                op.write(t.draw())
                 
             if j=='U':
                 k=moveUp(k)
                 t.add_rows(k[0])
                 print("Moving Up")
                 print(t.draw())
+                op.write("\nMoving Up \n")
+                op.write(t.draw())
                 
             if j=='D':
                 k=moveDown(k)
                 t.add_rows(k[0])
                 print("Moving Down")
                 print(t.draw())
+                op.write("\nMoving Down \n")
+                op.write(t.draw())
                 
             print("_"*20+"\n")
         print("Path is "+'->'.join(path))
         print("Number of nodes visited: "+str(len(visited1)+len(visited2)))
         print ("time_taken=",time.clock()-start)
+        op.write(("Path is "+'->'.join(path)))
+        op.write("Number of nodes visited: "+str(len(visited1)+len(visited2)))
+        op.write("time_taken="+str(time.clock()-start)) 
         break

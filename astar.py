@@ -123,10 +123,13 @@ class Puzzle:
         return copy
     
     def pprint(self):
+        op=open('output.txt','a+')
         x=Texttable()
         for row in self.board:
             x.add_row(row)
         print(x.draw())
+        op.write(x.draw())
+        op.write('\n')
     
     def __str__(self):
         return ''.join(map(str, self))
@@ -135,7 +138,10 @@ class Puzzle:
         for row in self.board:
             yield from row
 
-board = [[1,2,3],[7,8,0],[4,5,6]]#[[4,2,5],[1,3,0],[7,8,6]]
+
+board = [[0,1,2],[4,5,3],[7,8,6]]
+op=open('output.txt','a+')
+op.write("Goal found with A star Search approach!\n For the example: \n")
 puzzle = Puzzle(board)
 s = Solver(puzzle)
 start=time.clock()
@@ -148,6 +154,9 @@ for node in p:
     node.puzzle.pprint()
     steps += 1
 
-print("Total number of steps: " + str(steps))
-print("Total Number of nodes explored: "+str(totalNodes))
+op.write("Total number of steps: " + str(steps-1)+"\n")
+op.write("Total Number of nodes explored: "+str(totalNodes-1)+"\n")
+op.write("time_taken=" +str(time.clock()-start))
+print("Total number of steps: " + str(steps-1))
+print("Total Number of nodes explored: "+str(totalNodes-1))
 print ("time_taken=",time.clock()-start)
