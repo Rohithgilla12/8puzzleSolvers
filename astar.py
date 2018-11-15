@@ -4,6 +4,8 @@ from copy import deepcopy
 from texttable import Texttable
 totalNodes=0
 import time
+op=open('output.txt','a+')
+op.write("Goal found with A star Search approach!\n For the example: \n")
 class Node:
     def __init__(self, puzzle, parent=None, nextMove=None):
         self.puzzle=puzzle
@@ -139,9 +141,8 @@ class Puzzle:
             yield from row
 
 
-board = [[0,1,2],[4,5,3],[7,8,6]]
-op=open('output.txt','a+')
-op.write("Goal found with A star Search approach!\n For the example: \n")
+board = [[2,8,5],[1,0,4],[7,6,3]]
+
 puzzle = Puzzle(board)
 s = Solver(puzzle)
 start=time.clock()
@@ -160,3 +161,4 @@ op.write("time_taken=" +str(time.clock()-start))
 print("Total number of steps: " + str(steps-1))
 print("Total Number of nodes explored: "+str(totalNodes-1))
 print ("time_taken=",time.clock()-start)
+op.close()

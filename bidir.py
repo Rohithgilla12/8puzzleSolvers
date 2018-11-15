@@ -4,7 +4,7 @@ from texttable import Texttable
 import time
 
 goalState=[[1,2,3],[4,5,6],[7,8,0]]
-initalState=[[0,1,2],[4,5,3],[7,8,6]]
+initalState=[[2,8,5],[1,0,4],[7,6,3]]
 queue1=[]
 queue2=[]
 visited1=[]
@@ -177,7 +177,8 @@ while True:
         print("Path is "+'->'.join(path))
         print("Number of nodes visited: "+str(len(visited1)+len(visited2)))
         print ("time_taken=",time.clock()-start)
-        op.write(("Path is "+'->'.join(path)))
-        op.write("Number of nodes visited: "+str(len(visited1)+len(visited2)))
-        op.write("time_taken="+str(time.clock()-start)) 
+        op.write(("Path is "+'->'.join(path))+"\n")
+        op.write("Number of nodes visited: "+str(len(visited1)+len(visited2))+"\n")
+        op.write("time_taken="+str(time.clock()-start)+"\n") 
+        op.close()
         break

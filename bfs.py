@@ -4,7 +4,7 @@ from texttable import Texttable
 import time
 
 goalState=[[1,2,3],[4,5,6],[7,8,0]]
-initalState=[[0,1,2],[4,5,3],[7,8,6]]
+initalState=[[2,8,5],[1,0,4],[7,6,3]]
 queue=[]
 visited=[]
 goalFound=False
@@ -79,18 +79,18 @@ def main(state):
     while len(queue)!=0:
         temp=queue.pop(0)
         visited.append(temp[0])
-        if moveDown(temp) is not None:
-            if moveDown(temp)[0] not in visited:
-                queue.append(moveDown(temp))
-        if moveUp(temp) is not None:
-            if moveUp(temp)[0] not in visited:
-                queue.append(moveUp(temp))
         if moveLeft(temp) is not None:
             if moveLeft(temp)[0] not in visited:
                 queue.append(moveLeft(temp))
         if moveRight(temp) is not None:
             if moveRight(temp)[0] not in visited:
                 queue.append(moveRight(temp))
+        if moveUp(temp) is not None:
+            if moveUp(temp)[0] not in visited:
+                queue.append(moveUp(temp))    
+        if moveDown(temp) is not None:
+            if moveDown(temp)[0] not in visited:
+                queue.append(moveDown(temp))            
         for i in range(len(queue)):
             if queue[i][0] == goalState:
                 op = open('output.txt','a+')

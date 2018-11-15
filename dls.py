@@ -4,8 +4,8 @@ from texttable import Texttable
 import time
 
 goalState=[[1,2,3],[4,5,6],[7,8,0]]
-initalState=[[1,2,0],[4,5,3],[7,8,6]]
-limit=5
+initalState=[[2,8,5],[1,0,4],[7,6,3]]
+limit=18
 queue=[]
 visited=[]
 goalFound=False
